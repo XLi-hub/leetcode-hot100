@@ -13,21 +13,23 @@
 #         self.right = right
 class Solution:
     def inorderTraversal(self, root: TreeNode | None) -> list[int]:
+        if not root:
+            return []
+
         result = []
+        stack = [root]
+        while stack:
+            node = stack.pop()
 
-        def f(node: TreeNode | None):
-            if node is None:
-                return 
-
-            #中序遍历
-            #左
-            f(node.left)
-            #中
-            result.append(node.val)
-            #右
-            f(node.right)
-
-        f(root)
+            #如果是整数，说明该记录了
+            if isinstance(node,int):
+                result.append(node)
+                continue
+            if node.right:
+                stack.append(node.right)
+            stack.append(node.val)
+            if node.left:
+                stack.append(node.left)
         return result
 # @lc code=end
 
