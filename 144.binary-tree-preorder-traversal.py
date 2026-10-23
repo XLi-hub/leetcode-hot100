@@ -13,19 +13,21 @@
 #         self.right = right
 class Solution:
     def preorderTraversal(self, root: TreeNode | None) -> list[int]:
+        #栈
+        if not root:
+            return []
+        
         result = []
-        def f(node: Optional[TreeNode]):
-            if node is None:
-                return 
-            #前序遍历
-            #中
+        stack = [root]
+        while stack:
+            node = stack.pop()
             result.append(node.val)
-            #左
-            f(node.left)
-            #右
-            f(node.right)
 
-        f(root)
+            if node.right:
+                stack.append(node.right)
+            if node.left:
+                stack.append(node.left)
+
         return result
 # @lc code=end
 
