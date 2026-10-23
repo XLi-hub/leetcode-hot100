@@ -13,21 +13,25 @@
 #         self.right = right
 class Solution:
     def postorderTraversal(self, root: TreeNode | None) -> list[int]:
+        if not root:
+            return []
         result = []
+        stack = [root]
+        while stack:
+            node = stack.pop()
 
-        def f(node: TreeNode | None):
-            if node is None:
-                return
+            if isinstance(node,int):
+                result.append(node)
+                continue
+            stack.append(node.val)
+            if node.right:
+                stack.append(node.right)
+            if node.left:
+                stack.append(node.left)
 
-            #后序遍历
-            #左
-            f(node.left)
-            #右
-            f(node.right)
-            #中
-            result.append(node.val)
-
-        f(root)
         return result
+             
+            
+            
 # @lc code=end
 
