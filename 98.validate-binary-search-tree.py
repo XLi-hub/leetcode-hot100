@@ -16,14 +16,13 @@ class Solution:
         def dfs(node: TreeNode | None, min_limit, max_limit):
             if node is None:
                 return True
+            if node.val <= min_limit or node.val >= max_limit:
+                return False
 
             left_is_BST = dfs(node.left, min_limit, node.val)
             right_is_BST = dfs(node.right, node.val, max_limit)
 
-            if left_is_BST and right_is_BST and min_limit<node.val<max_limit:
-                return True
-            return False
-        return dfs(root, float("-inf"), float("inf")) 
-
+            return left_is_BST and right_is_BST
+        return dfs(root, float("-inf"), float("inf"))
 # @lc code=end
 
