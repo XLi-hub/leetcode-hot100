@@ -22,13 +22,16 @@ class Solution:
             nonlocal pre
 
             left_is_inorder = inorder(node.left)
-
+            if not left_is_inorder:
+                return False
             if node.val <= pre:
                 return False
             pre = node.val
 
             right_is_inorder = inorder(node.right)
-
+            if not right_is_inorder:
+                return False
+            
             return left_is_inorder and right_is_inorder
         return inorder(root)
 # @lc code=end
