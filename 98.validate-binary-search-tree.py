@@ -20,7 +20,11 @@ class Solution:
                 return False
 
             left_is_BST = dfs(node.left, min_limit, node.val)
+            if not left_is_BST:
+                return False
             right_is_BST = dfs(node.right, node.val, max_limit)
+            if not right_is_BST:
+                return False
 
             return left_is_BST and right_is_BST
         return dfs(root, float("-inf"), float("inf"))
